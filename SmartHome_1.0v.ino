@@ -8,8 +8,8 @@ byte stateRollerBlinds  = 0;
 byte statePowerSensor   = 1;
 byte stateMuteHantarex  = 1;
 
-const char* ssid     = "TITAN";
-const char* password = "boot7127102";
+const char* ssid     = "xxxxx";
+const char* password = "xxxxx";
 
 const char* PARAM_INPUT_1 = "output";
 const char* PARAM_INPUT_2 = "state";
