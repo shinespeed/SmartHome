@@ -9,3 +9,5 @@ Plans project expansion
 1. Graphs for sensors for the last 24 hours;
 2. Smart home control via Telegram, and the ability to view current data and message about exceeding the CO level (FIRE);
 3. Autonomous power consumption in the event of a shutdown, connected to a common system with the ability to fully control;
+
+![Image alt](https://github.com/shinespeed/SmartHome/blob/main/main_page.png)
