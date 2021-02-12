@@ -10,7 +10,7 @@ using namespace std;
 class IMenu
 { 
 public:
-	IMenu* _prev;
+    IMenu* _prev;
     String _name_str;
     int    _colum;
 
