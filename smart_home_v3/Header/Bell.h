@@ -11,13 +11,13 @@ class Bell
 public:
     Bell();
    
-	SPIFFS_DATA _spiffs_data;
-	Telegram    _telegram;
-	WebServer   _web_server;
-	Time        _time;
+    SPIFFS_DATA _spiffs_data;
+    Telegram    _telegram;
+    WebServer   _web_server;
+    Time        _time;
 
     void update_bell();
     void button_event();
-	void init_link_object();
+    void init_link_object();
     void start();
 };
