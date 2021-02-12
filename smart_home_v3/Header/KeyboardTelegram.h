@@ -56,9 +56,9 @@ public:
     String prev_json_menu;
   
     void init_keyboard();
-	void add_paret_menu(IMenu* branch, IMenu* paret);
+    void add_paret_menu(IMenu* branch, IMenu* paret);
     IMenu* find_paret(const String& command);
-	String pointer_paret(IMenu* paret, const String& change_name = "");
+    String pointer_paret(IMenu* paret, const String& change_name = "");
     String view_json_keyboard(const String& command, const String& change_name = ""); 
 
     ~KeyboardTelegram();
