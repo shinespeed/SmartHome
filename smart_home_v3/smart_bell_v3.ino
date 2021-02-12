@@ -1,8 +1,8 @@
 #include "stdif.h"
 #include "Bell.h" 
 
-const char SSID_WIFI[]     = "TITAN";
-const char PASSWORD_WIFI[] = "boot7127102";
+const char SSID_WIFI[]     = "XXXXXX";
+const char PASSWORD_WIFI[] = "XXXXXX";
 
 const short RELAY_PIN_L = 18; //bell control mute
 const short RELAY_PIN_R = 2;  //bell power regulation for telegraph and call
