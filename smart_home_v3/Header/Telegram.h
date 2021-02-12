@@ -14,8 +14,8 @@ class Telegram: public Controller
 public:
     Telegram();
 
-	WebServer*           _web;
-	Time*                _time;
+    WebServer*           _web;
+    Time*                _time;
     WiFiClientSecure     _client;
     UniversalTelegramBot _bot;
     KeyboardTelegram     _keyboard;
@@ -28,19 +28,19 @@ public:
     short        _bot_mtbs;
 
     void update();
-	void write_message_telegram(String chat_id, String text);
+    void write_message_telegram(String chat_id, String text);
     void command_telegram(const String& text, const String& chat_id, const String& from_name);
-    void handle_new_messages(int num_new_messages);
-	void update_write_data_ESP(String chat_id, int i, int& numNewMessages);
+    void handle_new_messages(int num_new_messages); 
+    void update_write_data_ESP(String chat_id, int i, int& numNewMessages);
     void call_bell(const String& from_name, const String& chat_id);
     void start_message();
     void button_message();
     void view_keyboard(const String& command, const String& chat_id, const String& chat_text = "Keyboard", const String& change_command = "");
-	void telegraph_send_text(const String& text, const String& chat_id, const String& from_name);
-	void set_pointer_web(WebServer* web);
-	void set_pointer_time(Time* time);
+    void telegraph_send_text(const String& text, const String& chat_id, const String& from_name);
+    void set_pointer_web(WebServer* web);
+    void set_pointer_time(Time* time);
 
-	bool mute_bell(const String& chat_id, String& mute_str);
+    bool mute_bell(const String& chat_id, String& mute_str);
 
     String ip_address_to_string(const IPAddress& ip_address);
     String status_message(const String& chat_id);
