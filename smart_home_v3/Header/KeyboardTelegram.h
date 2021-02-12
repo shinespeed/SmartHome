@@ -25,7 +25,7 @@ class Branch: public IMenu
 public:
     Branch(String name_str, int colum);
 
-	vector<IMenu*> parent_vec;
+    vector<IMenu*> parent_vec;
 
     bool is_branch();
     void add_elem(IMenu* component); 
