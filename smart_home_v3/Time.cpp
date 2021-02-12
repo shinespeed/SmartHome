@@ -1,11 +1,11 @@
 #include "Time.h"
 
 Time::Time(): time_client(ntpUDP),
-	          begin_mute_timer_str("null"),
-	          end_mute_timer_str("null"),
-	          time_zone_sec(7200),
+	      begin_mute_timer_str("null"),
+	      end_mute_timer_str("null"),
+              time_zone_sec(7200),
               SEC_IN_DAY(86400),
-	          mute_timer_start(0),
+              mute_timer_start(0),
               mute_timer_state(0)
 {}
 
