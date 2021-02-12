@@ -7,8 +7,8 @@ void Bell::update_bell()
 {
     button_event();
     _telegram.update();
-   	_time.update_time();
-	_web_server.update_message_telegram();
+    _time.update_time();
+    _web_server.update_message_telegram();
 }
 
 void Bell::button_event()
@@ -21,26 +21,26 @@ void Bell::button_event()
 
 void Bell::init_link_object() 
 {
-	_time.set_spiffs_data(&_spiffs_data);
-	_time.set_point_telegram(&_telegram);
+    _time.set_spiffs_data(&_spiffs_data);
+    _time.set_point_telegram(&_telegram);
 
-	_web_server.set_spiffs_data(&_spiffs_data);
-	_web_server.set_pointer_telegram(&_telegram);
+    _web_server.set_spiffs_data(&_spiffs_data);
+    _web_server.set_pointer_telegram(&_telegram);
 
-	_telegram.set_spiffs_data(&_spiffs_data);
-	_telegram.set_pointer_web(&_web_server);
-	_telegram.set_pointer_time(&_time);
+    _telegram.set_spiffs_data(&_spiffs_data);
+    _telegram.set_pointer_web(&_web_server);
+    _telegram.set_pointer_time(&_time);
 
-	_telegram._call.set_spiffs_data(&_spiffs_data);
+    _telegram._call.set_spiffs_data(&_spiffs_data);
 }
 
 void Bell::start()
 {
-	init_link_object();
+    init_link_object();
 	
-	_telegram.load_data_SPIFFS();
-	_time.load_data_SPIFFS();
+    _telegram.load_data_SPIFFS();
+    _time.load_data_SPIFFS();
     _telegram.start_message();
-	_telegram._call.load_spiffs();
-	_web_server.init_server();
+    _telegram._call.load_spiffs();
+    _web_server.init_server();
 }
