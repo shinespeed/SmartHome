@@ -33,7 +33,7 @@ void Controller::load_data_SPIFFS()
 
 void Controller::set_spiffs_data(SPIFFS_DATA* spiffs_data)
 {
-	this->_spiffs_data = spiffs_data;
+    this->_spiffs_data = spiffs_data;
 }
 
 void Controller::write_message_telegram(String chat_id, String text){}
