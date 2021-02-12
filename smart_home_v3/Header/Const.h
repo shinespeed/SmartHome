@@ -2,8 +2,8 @@
 
 #include "stdif.h"
 
-#define CHAT_ID_CONST "-1001403273821"
-#define BOTtoken      "966406106:AAHMjUkpMS8ctGyfxIYKU5z3O3Jybwo00iM"
+#define CHAT_ID_CONST "XXXXXXXXXXXX"
+#define BOTtoken      "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
 
 extern const char SSID_WIFI[];
 extern const char PASSWORD_WIFI[];
