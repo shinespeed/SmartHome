@@ -6,6 +6,7 @@ WebServer::WebServer(): server(80)
 void WebServer::init_server()
 {
 	server.on("/off", HTTP_GET, [this](AsyncWebServerRequest *request) {
+		_telegram->write_message_telegram(CHAT_ID_CONST, "BELL OFF");
 		change_mode_bell = true;
 		switch_bell_state(false);
 		request->send_P(200, "text/plain", "ok");
