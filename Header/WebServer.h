@@ -27,7 +27,8 @@ public:
 
 	void notify_clients(String name, byte state);
 	void handle_web_socket_message(void *arg, uint8_t *data, size_t len);
-    void on_event(AsyncWebSocket *server, AsyncWebSocketClient *client, AwsEventType type, void *arg, uint8_t *data, size_t len);
+        void on_event(AsyncWebSocket *server, AsyncWebSocketClient *client, 
+	  AwsEventType type, void *arg, uint8_t *data, size_t len);
 	void not_found(AsyncWebServerRequest *request);
 
 	String state_switch(byte stateData);
