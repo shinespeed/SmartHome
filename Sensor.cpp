@@ -21,10 +21,10 @@ Sensor::Sensor(Controller* telegram, Controller* web_server, Controller* spiffs_
 	_num_read_error_temperature(0),
 	_num_error_read(5),
 	_rs_gas(0),
-  _ratio(0),
-  _sensor_value(0),
-  _sensor_volt(0),
-  _R0(7200.0),
+        _ratio(0),
+        _sensor_value(0),
+        _sensor_volt(0),
+        _R0(7200.0),
 	_ppm(0)
 {
 	_indication_sensor.BME_room_humidity    = "NaN";
