@@ -1,217 +1,194 @@
 #include "Sensor.h"
 
-DHT dht(DHTPIN, DHTTYPE);
-Adafruit_BME280 bme;
-
-String BMERoomHumidity    = "0";
-String BMERoomTemperature = "0";
-String BMEPressure        = "0";
-String DHTHumidity        = "0";
-String DHTTemperature     = "0";
-String COSensor           = "0";
-
-float RS_gas      = 0;
-float ratio       = 0;
-float sensorValue = 0;
-float sensor_volt = 0;
-float R0          = 7200.0;
-
-int ppm         = 0;
-
-const byte mute_menu[5]     = {0xF4, 0x88, 0x00, 0xFD, 0x09};
-const byte info_menu[5]     = {0xF4, 0x88, 0x00, 0xFD, 0x51};
-const byte ok_menu[5]       = {0xF4, 0x88, 0x00, 0xFD, 0x0F};
-const byte enter_menu[5]    = {0x45, 0x88, 0x00, 0xFD, 0x0F};
-const byte up_menu[5]       = {0xF4, 0x88, 0x00, 0xFD, 0x14};
-const byte down_menu[5]     = {0xF4, 0x88, 0x00, 0xFD, 0x15};
-const byte left_menu[5]     = {0xF4, 0x88, 0x00, 0xFD, 0x0B};
-const byte right_menu[5]    = {0xF4, 0x88, 0x00, 0xFD, 0x0A};
-const byte back_menu[5]     = {0xF4, 0x88, 0x00, 0xFD, 0x10};
-const byte off_power[6]     = {0xF5, 0x88, 0x00, 0xFE, 0xFE, 0x00};
-const byte on_power[6]      = {0xF5, 0x88, 0x00, 0xFE, 0xFE, 0x01};
-
-Sensor::Sensor():
-                timerReadBMERoom(1000), 
-                timerReadDHT(15000), 
-                timerReadCOSensor(500),
-                bufDHTHumidity("0.0"),
-                bufDHTTemperature("0.0"),
-                bufCOSensor("0.0"),
-                bufTimerReadBMERoomHumidity(0),
-                bufTimerReadBMERoomTemperature(0),  
-                bufTimerReadBMEPressure(0), 
-                bufTimerReadDHTHumidity(0),
-                bufTimerReadDHTTemperature(0),
-                bufTimerReadCOSensor(0),
-                numReadErrorHumidity(0),
-                numReadErrorTemperature(0),
-                numErrorRead(5)
-{}
-
-byte Sensor::switchPowerBalLamp()
+Sensor::Sensor(Controller* telegram, Controller* web_server, Controller* spiffs_data):
+	_telegram(telegram),
+	_web_server(web_server),
+	_spiffs_data(spiffs_data),
+	_dht(DHT_PIN, DHTTYPE),
+	_timer_read_BME_room(1000),
+	_timer_read_DHT(15000),
+	_timer_read_CO_sensor(500),
+	_buf_DHT_humidity("0.0"),
+	_buf_DHT_temperature("0.0"),
+	_buf_CO_sensor("0.0"),
+	_buf_timer_read_BME_room_humidity(0),
+	_buf_timer_read_BME_room_temperature(0),
+	_buf_timer_read_BME_pressure(0),
+	_buf_timer_read_DHT_humidity(0),
+	_buf_timer_read_DHT_temperature(0),
+	_buf_timer_read_CO_sensor(0),
+	_num_read_error_humidity(0),
+	_num_read_error_temperature(0),
+	_num_error_read(5),
+	_rs_gas(0),
+  _ratio(0),
+  _sensor_value(0),
+  _sensor_volt(0),
+  _R0(7200.0),
+	_ppm(0)
 {
-  statePowerBalLamp = !statePowerBalLamp;
-  digitalWrite(balLampPin, statePowerBalLamp);
-  
-  return statePowerBalLamp;
+	_indication_sensor.BME_room_humidity    = "NaN";
+	_indication_sensor.BME_room_temperature = "NaN";
+	_indication_sensor.BME_pressure         = "NaN";
+	_indication_sensor.DHT_humidity         = "NaN";
+	_indication_sensor.DHT_temperature      = "NaN";
+	_indication_sensor.CO_level             = "NaN";
 }
 
-byte Sensor::switchPowerHantarex()
+Sensor::~Sensor()
 {
-  statePowerHantarex = !statePowerHantarex;
-  if(statePowerHantarex)
-  {
-    Serial1.write(on_power, 6);
-    stateMuteHantarex = 1;
-  }
-  else
-  {
-    Serial1.write(off_power, 6);
-  }
-  
-  return statePowerHantarex;
 }
 
-byte Sensor::switchPowerSensor()
+void Sensor::button_power_lamp()
 {
-  statePowerSensor = !statePowerSensor;
-  digitalWrite(sensorPowerPin, statePowerSensor);
-
-  return statePowerSensor;
+	if ((digitalRead(BAL_BUTTON_PIN) == HIGH) && (_time_mute_button < millis()))
+	{
+		delay(300);
+		if (digitalRead(BAL_BUTTON_PIN) == LOW)
+		{
+			_time_mute_button = millis() + 2000;
+			_web_server->web_notify_bell_status();
+		}
+		else
+		{
+			_time_mute_button = millis() + 1000;
+			_web_server->web_notify_bell_status();
+		}
+	}
 }
 
-byte Sensor::switchMuteHantarex()
+void Sensor::read_BME_room_humidity()
 {
-  stateMuteHantarex = !stateMuteHantarex;
-  Serial1.write(mute_menu, 5);
-  
-  return stateMuteHantarex;
+	if (_buf_timer_read_BME_room_humidity < millis())
+	{
+		String bufData = String(_bme.readHumidity());
+
+		_indication_sensor.BME_room_humidity = bufData.substring(0, bufData.length() - 1);
+		Serial.println("Room Humidity: " + _indication_sensor.BME_room_humidity);
+		_buf_timer_read_BME_room_humidity = millis() + _timer_read_BME_room;
+	}
 }
 
-void Sensor::readBMERoomHumidity()
+void Sensor::read_BME_room_temperature()
 {
-  if (bufTimerReadBMERoomHumidity < millis())
-  {
-    String bufData = String(bme.readHumidity());
-    
-    BMERoomHumidity = bufData.substring(0, bufData.length()-1);
-    Serial.println("Room Humidity: "+ BMERoomHumidity);
-    bufTimerReadBMERoomHumidity = millis() + timerReadBMERoom;
-  }
+	if (_buf_timer_read_BME_room_temperature < millis())
+	{
+		String bufData = String(_bme.readTemperature());
+
+		_indication_sensor.BME_room_temperature = bufData.substring(0, bufData.length() - 1);
+		Serial.println("Room Temperature: " + _indication_sensor.BME_room_temperature);
+		_buf_timer_read_BME_room_temperature = millis() + _timer_read_BME_room;
+	}
 }
 
-void Sensor::readBMERoomTemperature()
+void Sensor::read_BME_pressure() 
 {
-  if (bufTimerReadBMERoomTemperature < millis())
-  {
-    String bufData = String(bme.readTemperature());
-    
-    BMERoomTemperature = bufData.substring(0, bufData.length()-1);
-    Serial.println("Room Temperature: "+ BMERoomTemperature);
-    bufTimerReadBMERoomTemperature = millis() + timerReadBMERoom;
-  } 
+	if (_buf_timer_read_BME_pressure < millis())
+	{
+		String bufData = String(_bme.readPressure() / 100.0F);
+
+		_indication_sensor.BME_pressure = bufData.substring(0, bufData.length() - 1);
+		Serial.println("Pressure: " + _indication_sensor.BME_pressure);
+		_buf_timer_read_BME_pressure = millis() + _timer_read_BME_room;
+	}
 }
 
-void Sensor::readBMEPressure()
+void Sensor::read_MQ_room_CO() 
 {
-  if (bufTimerReadBMEPressure < millis())
-  {
-    String bufData = String(bme.readPressure() / 100.0F);
-    
-    BMEPressure = bufData.substring(0, bufData.length()-1);
-    Serial.println("Pressure: "+ BMEPressure);
-    bufTimerReadBMEPressure = millis() + timerReadBMERoom;
-  } 
+	if (_buf_timer_read_CO_sensor < millis())
+	{
+		_sensor_value = analogRead(SENSOR_MQ7);
+		_sensor_volt = _sensor_value / 4096 * 5.0;
+		_rs_gas = (5.0 - _sensor_volt) / _sensor_volt;
+		_ratio = _rs_gas / _R0; //Replace R0 with the value found using the sketch above
+		float x = 1538.46 * _ratio;
+		_ppm = pow(x, -1.709) * 10;
+		_buf_CO_sensor = String(_ppm);
+
+		_buf_timer_read_CO_sensor = millis() + _timer_read_CO_sensor;
+		Serial.println(_ppm);
+	}
+	_indication_sensor.CO_level = String(_ppm);
 }
 
-void Sensor::readDHTHumidity()
+void Sensor::read_DHT_humidity() 
 {
-  if (bufTimerReadDHTHumidity < millis())
-  {
-    float h = dht.readHumidity();
+	if (_buf_timer_read_DHT_humidity < millis())
+	{
+		float h = _dht.readHumidity();
 
-    bufTimerReadDHTHumidity = millis() + timerReadDHT;
-    
-    if (isnan(h)) 
-    {    
-      Serial.println("Failed to read from DHT sensor!");
-      numReadErrorHumidity++;
-    
-      if (numReadErrorHumidity < numErrorRead)
-      {
-        DHTHumidity = bufDHTHumidity;
-      }
-      else
-      {
-        DHTHumidity = "0.0";
-      }
-    }
-    else 
-    {
-      Serial.println("Street Humidity: "+ bufDHTHumidity +"%");
-      bufDHTHumidity = String(h).substring(0, String(h).length()-1);
-      numReadErrorHumidity = 0;
-      DHTHumidity =  bufDHTHumidity;
-    }
-  }
+		_buf_timer_read_DHT_humidity = millis() + _timer_read_DHT;
+
+		if (isnan(h))
+		{
+			Serial.println("Failed to read from DHT sensor!");
+			_num_read_error_humidity++;
+
+			if (_num_read_error_humidity < _num_error_read)
+			{
+				_indication_sensor.DHT_humidity = _buf_DHT_humidity;
+			}
+			else
+			{
+				_indication_sensor.DHT_humidity = "0.0";
+			}
+		}
+		else
+		{
+			Serial.println("Street Humidity: " + _buf_DHT_humidity + "%");
+			_buf_DHT_humidity = String(h).substring(0, String(h).length() - 1);
+			_num_read_error_humidity = 0;
+			_indication_sensor.DHT_humidity = _buf_DHT_humidity;
+		}
+	}
 }
 
-void Sensor::readDHTTemperature()
+void Sensor::read_DHT_temperature() 
 {
-  if (bufTimerReadDHTTemperature < millis())
-  {
-    float t = dht.readTemperature();
-    
-    bufTimerReadDHTTemperature = millis() + timerReadDHT;
-  
-    if (isnan(t)) 
-    {    
-      Serial.println("Failed to read from DHT sensor!");
-      numReadErrorTemperature++;
-    
-      if (numReadErrorTemperature < numErrorRead)
-      {
-        DHTTemperature = bufDHTTemperature;
-      }
-      else
-      {
-        DHTTemperature = "0.0";
-      }
-    }
-    else 
-    {
-      Serial.println("Street Temperature: "+ bufDHTTemperature +"C");
-      bufDHTTemperature = String(t).substring(0, String(t).length()-1);
-      numReadErrorTemperature = 0;
-      DHTTemperature = bufDHTTemperature;
-    }
-  }
+	if (_buf_timer_read_DHT_temperature < millis())
+	{
+		float t = _dht.readTemperature();
+
+		_buf_timer_read_DHT_temperature = millis() + _timer_read_DHT;
+
+		if (isnan(t))
+		{
+			Serial.println("Failed to read from DHT sensor!");
+			_num_read_error_temperature++;
+
+			if (_num_read_error_temperature < _num_error_read)
+			{
+				_indication_sensor.DHT_temperature = _buf_DHT_temperature;
+			}
+			else
+			{
+				_indication_sensor.DHT_temperature = "0.0";
+			}
+		}
+		else
+		{
+			Serial.println("Street Temperature: " + _buf_DHT_temperature + "C");
+			_buf_DHT_temperature = String(t).substring(0, String(t).length() - 1);
+			_num_read_error_temperature = 0;
+			_indication_sensor.DHT_temperature = _buf_DHT_temperature;
+		}
+	}
 }
 
-void Sensor::readCOSensor()
+void Sensor::init() 
 {
-  if(bufTimerReadCOSensor < millis())
-  {
-    sensorValue = analogRead(SENSORMQ7);
-    sensor_volt = sensorValue/4096*5.0;
-    RS_gas = (5.0-sensor_volt)/sensor_volt;
-    ratio = RS_gas/R0; //Replace R0 with the value found using the sketch above
-    float x = 1538.46 * ratio;
-    ppm = pow(x,-1.709)*10;
-    bufCOSensor = ppm;
-    
-    bufTimerReadCOSensor = millis() + timerReadCOSensor; 
-    Serial.println(ppm);
-  }
-  COSensor = ppm;
+	_dht.begin();
+	_bme.begin(0x76);
 }
 
-void Sensor::updateSensor()
+void Sensor::update() 
 {
-  readBMERoomHumidity();
-  readBMERoomTemperature();
-  readBMEPressure();
-  readDHTHumidity();
-  readDHTTemperature();
-  readCOSensor();
+	button_power_lamp();
+
+	read_BME_room_humidity();
+	read_BME_room_temperature();
+	read_BME_pressure();
+	read_MQ_room_CO();
+	read_DHT_humidity();
+	read_DHT_temperature();
 }
