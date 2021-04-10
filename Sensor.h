@@ -1,44 +1,68 @@
 #pragma once
 
-#include "var.h"
-#include "stdaf.h"
+#ifndef _SENSOR_H
+#define _SENSOR_H 
 
-class Sensor 
+#define DHTTYPE DHT22
+#define SEALEVELPRESSURE_HPA (1013.25)
+
+#include "Controller.h"
+#include <DHT.h>
+#include <Adafruit_Sensor.h>
+#include <Adafruit_BME280.h>
+
+class Sensor: public Controller
 {
-public:  
-  long timerReadBMERoom; 
-  long timerReadDHT;
-  long timerReadCOSensor;
+private:
+	DHT _dht;
+	Adafruit_BME280 _bme;
 
-  long bufTimerReadBMERoomHumidity;
-  long bufTimerReadBMERoomTemperature;  
-  long bufTimerReadBMEPressure; 
-  long bufTimerReadDHTHumidity;
-  long bufTimerReadDHTTemperature;
-  long bufTimerReadCOSensor;
+	String _buf_DHT_humidity;
+	String _buf_DHT_temperature;
+	String _buf_CO_sensor;
 
-  String bufDHTHumidity;
-  String bufDHTTemperature;
-  String bufCOSensor;
+	float _rs_gas = 0;
+	float _ratio = 0;
+	float _sensor_value = 0;
+	float _sensor_volt = 0;
+	float _R0 = 7200.0;
 
-  int numReadErrorHumidity;
-  int numReadErrorTemperature;
+	long _timer_read_BME_room;
+	long _timer_read_DHT;
+	long _timer_read_CO_sensor;
 
-  int numErrorRead; 
-  
-  Sensor();
+	long _buf_timer_read_BME_room_humidity;
+	long _buf_timer_read_BME_room_temperature;
+	long _buf_timer_read_BME_pressure;
+	long _buf_timer_read_DHT_humidity;
+	long _buf_timer_read_DHT_temperature;
+	long _buf_timer_read_CO_sensor;
 
-  byte switchPowerBalLamp();
-  byte switchPowerHantarex();
-  byte switchPowerSensor();
-  byte switchMuteHantarex();
+	int _num_read_error_humidity;
+	int _num_read_error_temperature;
+	int _num_error_read;
+	int _ppm;
 
-  void readBMERoomHumidity();
-  void readBMERoomTemperature();
-  void readBMEPressure(); 
-  void readDHTHumidity();
-  void readDHTTemperature();
-  void readCOSensor();
+	Controller* _telegram;
+	Controller* _web_server;
+	Controller* _spiffs_data;
 
-  void updateSensor();
+public:
+	Sensor(Controller* telegram, Controller* web_server, Controller* spiffs_data);
+	~Sensor();
+
+	void button_power_lamp();
+
+	void read_BME_room_humidity();
+	void read_BME_room_temperature();
+	void read_BME_pressure();
+	void read_MQ_room_CO();
+	void read_DHT_humidity();
+	void read_DHT_temperature();
+
+	void init();
+	void update();
 };
+
+#endif
+
