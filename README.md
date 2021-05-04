@@ -10,4 +10,4 @@ This project has three interrelated parts.
 2. Add authentication to the web interface.
 3. Add WIFI setting mode.
 
-![Image alt](https://github.com/shinespeed/SmartHome/blob/main/main_page.png)
+![Image alt](https://github.com/shinespeed/SmartHome/blob/main/index.png)
