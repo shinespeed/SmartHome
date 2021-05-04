@@ -12,14 +12,11 @@ This project has three interrelated parts.
 
 # Web interface screenshot
 
-<p align="center">
-  <img src="https://github.com/shinespeed/SmartHome/blob/main/index.png" width="35" title="hover text">
+<p>
+  <img src="https://github.com/shinespeed/SmartHome/blob/main/index.png" width="150" title="hover text">
+  <img src="https://github.com/shinespeed/SmartHome/blob/main/remote_tv.png" width="150" title="hover text">
+  <img src="https://github.com/shinespeed/SmartHome/blob/main/roller_blinds.png" width="150" title="hover text">
 </p>
-
-
-![Image alt](https://github.com/shinespeed/SmartHome/blob/main/index.png)
-![Image alt](https://github.com/shinespeed/SmartHome/blob/main/remote_tv.png)
-![Image alt](https://github.com/shinespeed/SmartHome/blob/main/roller_blinds.png)
 
 # Web interface screenshot
 
