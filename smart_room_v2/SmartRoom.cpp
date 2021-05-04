@@ -2,10 +2,10 @@
 
 
 SmartRoom::SmartRoom(): _spiffs_data(new SPIFFS_DATA()),
-	                    _telegram(new Telegram(_web_server, _sensor, _spiffs_data)),
+	                _telegram(new Telegram(_web_server, _sensor, _spiffs_data)),
                         _web_server(new WebServer(_telegram, _sensor, _spiffs_data)),
-	                    _sensor(new Sensor(_telegram, _web_server, _spiffs_data)),
-	                    _sheets_weather(new SheetsWeather())
+	                _sensor(new Sensor(_telegram, _web_server, _spiffs_data)),
+	                _sheets_weather(new SheetsWeather())
 {}
 
 SmartRoom::~SmartRoom()
