@@ -13,15 +13,15 @@ This project has three related parts based on esp32 and esp8266 microcontrollers
 # Web interface screenshot
 
 <p>
-  <img src="https://github.com/shinespeed/SmartHome/blob/main/index.png" width="280" title="hover text">
-  <img src="https://github.com/shinespeed/SmartHome/blob/main/remote_tv.png" width="280" title="hover text">
-  <img src="https://github.com/shinespeed/SmartHome/blob/main/roller_blinds.png" width="280" title="hover text">
+  <img src="https://github.com/shinespeed/SmartHome/blob/main/index.png" width="250" title="hover text">
+  <img src="https://github.com/shinespeed/SmartHome/blob/main/remote_tv.png" width="250" title="hover text">
+  <img src="https://github.com/shinespeed/SmartHome/blob/main/roller_blinds.png" width="250" title="hover text">
 </p>
 
 # Telegram screenshot
 
 <p>
-  <img src="https://github.com/shinespeed/SmartHome/blob/main/weather.jpg" width="300" title="hover text">
-  <img src="https://github.com/shinespeed/SmartHome/blob/main/call.jpg" width="300" title="hover text">
-  <img src="https://github.com/shinespeed/SmartHome/blob/main/mute_bell.jpg" width="300" title="hover text">
+  <img src="https://github.com/shinespeed/SmartHome/blob/main/weather.jpg" width="250" title="hover text">
+  <img src="https://github.com/shinespeed/SmartHome/blob/main/call.jpg" width="250" title="hover text">
+  <img src="https://github.com/shinespeed/SmartHome/blob/main/mute_bell.jpg" width="250" title="hover text">
 </p>
