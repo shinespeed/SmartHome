@@ -20,4 +20,8 @@ This project has three interrelated parts.
 
 # Web interface screenshot
 
-![Image alt](https://github.com/shinespeed/SmartHome/blob/main/telegram.png)
+<p>
+  <img src="https://github.com/shinespeed/SmartHome/blob/main/index.png" width="250" title="hover text">
+  <img src="https://github.com/shinespeed/SmartHome/blob/main/remote_tv.png" width="250" title="hover text">
+  <img src="https://github.com/shinespeed/SmartHome/blob/main/roller_blinds.png" width="250" title="hover text">
+</p>
