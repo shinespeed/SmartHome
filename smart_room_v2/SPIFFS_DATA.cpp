@@ -7,7 +7,7 @@ SPIFFS_DATA::SPIFFS_DATA()
 {
 	_status_output._power_hantarex = 1;
 	_status_output._power_sensor   = 1;
-    _status_output._fire           = 0;
+        _status_output._fire           = 0;
 	_status_output._speaker        = 1;
 	_status_output._bell           = 1;
 	_status_output._roller_blinds  = 0;
