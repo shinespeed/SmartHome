@@ -1,0 +1,71 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Smart Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="apple-touch-icon" type="image/png" href="favicon.png">
+</head>
+<body ontouchstart="">
+    <div class="topnav">
+        <h1>Remote Hantarex</h1>
+    </div>
+
+    <div class="block_menu">
+        <div class="menu_remote">
+            <button class="myButton" id="up_menu_hantarex" onClick="reply_click(this.id)">▲</button>
+        </div>
+        <div class="menu_remote">
+            <button class="myButton" id="left_menu_hantarex" onClick="reply_click(this.id)">◄</button>
+            <button class="myButton" id="ok_menu_hantarex" onClick="reply_click(this.id)">OK</button>
+            <button class="myButton" id="right_menu_hantarex" onClick="reply_click(this.id)">►</button>
+        </div>
+        <div class="menu_remote">
+            <button class="myButton" id="down_menu_hantarex" onClick="reply_click(this.id)">▼</button>
+        </div>
+        <div class="menu_remote">
+            <button class="myButton" id="info_menu_hantarex" onClick="reply_click(this.id)">INFO</button>
+            <button class="myButton" id="enter_menu_hantarex" onClick="reply_click(this.id)">ENTER</button>
+            <button class="myButton" id="back_menu_hantarex" onClick="reply_click(this.id)">BACK</button>
+        </div>
+    </div>
+
+    <div class="block">
+        <div class="blockIco">
+            <i class="fas fa-power-off" style="color:#059e8a;"></i>
+        </div>
+        <div class="blockText">
+            <label class="block_text">Power</label>
+        </div>
+        <div class="blockCheakbox">
+            <div class="switchBlock">
+                <div class="onoffswitch">
+                    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="2" tabindex="0" %STATE_HANTAREX_POWER%>
+                    <label class="onoffswitch-label" for="2"></label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="block">
+        <div class="blockIco">
+            <i class="fas fa-volume-up" style="color:#059e8a;"></i>
+        </div>
+        <div class="blockText">
+            <label class="block_text">Sound</label>
+        </div>
+        <div class="blockCheakbox">
+            <div class="switchBlock">
+                <div class="onoffswitch">
+                    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="4" tabindex="0" %STATE_HANTAREX_MUTE%>
+                    <label class="onoffswitch-label" for="4"></label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/script_hantarex.js"></script>
+</body>
+</html>
