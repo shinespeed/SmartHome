@@ -1,13 +1,13 @@
 # SmartHome
+This project has three interrelated parts.
+1. Smart Room - responsible for controlling the TV via RS-232, reading the weather indoors and outdoors from 5 sensors. Sends them to in a Google spreadsheet, sends a signal with an increased CO to telegrams and emits a sound is also the main web server.
+2. Smart Bell is the main user of telegrams, sends a message to a group, has many settings and interacts with the web interface.
+3. Roller blinds - a separate board for the correct operation of the blinds, receiving commands from a smart room and a smart call.
 
-Project Smart Home for ESP32 create in Arduino ide and Microsoft Studio
-1. SENSORS IN THE HOUSE AND OUTDOOR;
-2. Remote blind control;
-3. TV control via rs-232 interface using max232 board;
+$Plans
 
-Plans project expansion
-1. Graphs for sensors for the last 24 hours;
-2. Smart home control via Telegram, and the ability to view current data and message about exceeding the CO level (FIRE);
-3. Autonomous power consumption in the event of a shutdown, connected to a common system with the ability to fully control;
+1. Add a graph of sensors to the web interface.
+2. Add authentication to the web interface.
+3. Add WIFI setting mode.
 
 ![Image alt](https://github.com/shinespeed/SmartHome/blob/main/main_page.png)
