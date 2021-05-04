@@ -13,3 +13,4 @@ This project has three interrelated parts.
 ![Image alt](https://github.com/shinespeed/SmartHome/blob/main/index.png)
 ![Image alt](https://github.com/shinespeed/SmartHome/blob/main/remote_tv.png)
 ![Image alt](https://github.com/shinespeed/SmartHome/blob/main/roller_blinds.png)
+![Image alt](https://github.com/shinespeed/SmartHome/blob/main/telegram.png)
