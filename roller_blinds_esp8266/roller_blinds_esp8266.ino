@@ -33,8 +33,8 @@ int nowStep         = 0;
 int futureStep      = 0;
 int startDriveStep  = 0;
 
-const char* ssid     = "TITAN";
-const char* password = "boot7127102";
+const char* ssid     = "xxxxxxxxxxx";
+const char* password = "xxxxxxxxxxx";
 
 const char* PARAM_INPUT = "value";
 
