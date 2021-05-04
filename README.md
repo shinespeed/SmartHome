@@ -27,5 +27,4 @@ This project has three related parts based on esp32 and esp8266 microcontrollers
   <img src="https://github.com/shinespeed/SmartHome/blob/main/mute_bell.jpg" width="250" title="hover text">
 </p>
 
-# Telegram screenshot
 
