@@ -18,7 +18,7 @@ This project has three related parts based on esp32 and esp8266 microcontrollers
   <img src="https://github.com/shinespeed/SmartHome/blob/main/roller_blinds.png" width="300" title="hover text">
 </p>
 
-# Web interface screenshot
+# Telegram screenshot
 
 <p>
   <img src="https://github.com/shinespeed/SmartHome/blob/main/weather.jpg" width="300" title="hover text">
