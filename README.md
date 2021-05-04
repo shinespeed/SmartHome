@@ -13,9 +13,9 @@ This project has three related parts based on esp32 and esp8266 microcontrollers
 # Web interface screenshot
 
 <p>
-  <img src="https://github.com/shinespeed/SmartHome/blob/main/index.png" width="250" title="hover text">
-  <img src="https://github.com/shinespeed/SmartHome/blob/main/remote_tv.png" width="250" title="hover text">
-  <img src="https://github.com/shinespeed/SmartHome/blob/main/roller_blinds.png" width="250" title="hover text">
+  <img src="https://github.com/shinespeed/SmartHome/blob/main/index.png" width="300" title="hover text">
+  <img src="https://github.com/shinespeed/SmartHome/blob/main/remote_tv.png" width="300" title="hover text">
+  <img src="https://github.com/shinespeed/SmartHome/blob/main/roller_blinds.png" width="300" title="hover text">
 </p>
 
 # Web interface screenshot
