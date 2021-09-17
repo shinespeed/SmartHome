@@ -1,0 +1,73 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Smart Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="apple-touch-icon" type="image/png" href="favicon.png">
+</head>
+<body ontouchstart="">
+    <div class="topnav">
+        <h1>Roller Blinds</h1>
+    </div>
+
+    <div class="block-menu-slider" id="block-menu">
+        <div class="container">
+            <div class="component" id="block-component">
+                <div class="slider">
+                    <div class="track">
+                        <span class="runner"></span>
+                    </div>
+                    <input type="range" onchange="updateSliderPWM(this)" id="pwmSlider" min="0" max="100" step="1" value="0" />
+                </div>
+            </div>
+            <div class="operators" id="block-operators">
+                <span class="decrement">-</span>
+                <span class="increment">+</span>
+            </div>
+            <div class="class1" id="block-bubble"><div class="bubble">0</div></div>
+
+        </div>
+    </div>
+
+
+    <div class="block" id="block-checkbox-up-down">
+        <div class="blockIco">
+            <i class="fas fa-columns" style="color:#059e8a;"></i>
+        </div>
+        <div class="blockText">
+            <label class="block_text">Up/Down</label>
+        </div>
+        <div class="blockCheakbox">
+            <div class="switchBlock">
+                <div class="onoffswitch">
+                    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="5" tabindex="0" %STATE_ROLLER_BLINDS%>
+                    <label class="onoffswitch-label" for="5"></label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="block">
+        <div class="blockIco">
+            <i class="fas fa-cogs" style="color:#059e8a;"></i>
+        </div>
+        <div class="blockText">
+            <label class="block_text">Correction Mode</label>
+        </div>
+        <div class="blockCheakbox">
+            <div class="switchBlock">
+                <div class="onoffswitch">
+                    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="15" tabindex="0">
+                    <label class="onoffswitch-label" for="15"></label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="/roller_blinds.js"></script>
+</body>
+</html>

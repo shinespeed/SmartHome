@@ -1,0 +1,202 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Smart Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="apple-touch-icon" type="image/png" href="favicon.png">
+</head>
+<body ontouchstart="">
+    <div class="topnav">
+        <h1>Smart Home</h1>
+    </div>
+
+    <div class="block">
+        <div class="blockSensor">
+            <div class="block-ico-sensor">
+                <i class="fas fa-cloud-sun" style="color:#059e8a;"></i>
+            </div>
+            <div class="blockSensorCenter">
+                <div class="icon_sensor">
+                    <i class="fas fa-thermometer-half" id="temp_icon_id"></i>
+                </div>
+                <span class="dht-labels" id="temperature">%TEMPERATURE%</span>
+                <sup class="units">&deg;C</sup>
+
+                <div class="icon_sensor">
+                    <i class="fas fa-tint" id="hum_icon_id"></i>
+                </div>
+                <span class="dht-labels" id="humidity">%HUMIDITY%</span>
+                <sup class="units">&percnt;</sup>
+
+                <div class="icon_sensor">
+                    <i class="fas fa-weight" id="pressure_icon_id"></i>
+                </div>
+                <span class="dht-labels" id="pressure">%PRESSURE%</span>
+                <sup class="units">hPa</sup>
+            </div>
+            <div class="block-png-graphic">
+                <button id="myBtn" onclick="document.location='remote_hantarex'">
+                    <div class="block-png-graphic">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="block">
+        <div class="blockSensor">
+
+            <div class="block-ico-sensor">
+                <i class="fas fa-home" style="color:#059e8a;"></i>
+            </div>
+
+            <div class="blockSensorCenter">
+                <div class="icon_sensor">
+                    <i class="fas fa-thermometer-half" id="temp_room_icon_id"></i>
+                </div>
+                <span class="dht-labels" id="temperature_room">%TEMPERATURE_ROOM%</span>
+                <sup class="units">&deg;C</sup>
+                <div class="icon_sensor">
+                    <i class="fas fa-tint" id="hum_room_icon_id"></i>
+                </div>
+                <span class="dht-labels" id="humidity_room">%HUMIDITY_ROOM%</span>
+                <sup class="units">&percnt;</sup>
+                <div class="icon_sensor">
+                    <i class="fas fa-smog" id="co_icon_id"></i>
+                </div>
+                <span class="dht-labels" id="co"> %CO%</span>
+                <sup class="units">ppr</sup>
+            </div>
+
+            <div class="block-png-graphic">
+                <button id="myBtn" onclick="document.location='remote_hantarex'">
+                    <div class="block-png-graphic">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="block">
+        <div class="blockIco">
+            <i class="fas fa-tv" style="color:#059e8a;"></i>
+        </div>
+        <div class="block-text-hantarex">
+            <label class="block_text">Hantarex Monitor</label>
+        </div>
+        <div class="block-png-hantarex">
+            <button id="myBtn" onclick="document.location='remote_hantarex'">
+                <div class="block-png-hantarex">
+                    <i class="fas fa-cog"></i>
+                </div>
+            </button>
+        </div>
+        <div class="blockCheakbox">
+            <div class="switchBlock">
+                <div class="onoffswitch">
+                    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="2" tabindex="0" %STATE_HANTAREX_POWER%>
+                    <label class="onoffswitch-label" for="2"></label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="block">
+        <div class="blockIco">
+            <i class="fas fa-columns" style="color:#059e8a;"></i>
+        </div>
+        <div class="block-text-hantarex">
+            <label class="block_text">Roller Blinds</label>
+        </div>
+        <div class="block-png-hantarex">
+            <button id="myBtn" onclick="document.location='roller_blinds'">
+                <div class="block-png-hantarex">
+                    <i class="fas fa-cog"></i>
+                </div>
+            </button>
+        </div>
+        <div class="blockCheakbox">
+            <div class="switchBlock">
+                <div class="onoffswitch">
+                    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="5" tabindex="0" %STATE_ROLLER_BLINDS%>
+                    <label class="onoffswitch-label" for="5"></label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="block">
+        <div class="blockIco">
+            <i class="far fa-lightbulb" style="color:#059e8a;"></i>
+        </div>
+        <div class="blockText">
+            <label class="block_text">Lamp Balcone</label>
+        </div>
+        <div class="blockCheakbox">
+            <div class="switchBlock">
+                <div class="onoffswitch">
+                    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="1" tabindex="0" %STATE_BAL_LAMP%>
+                    <label class="onoffswitch-label" for="1"></label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="block">
+        <div class="blockIco">
+            <i class="fas fa-bell" style="color:#059e8a;"></i>
+        </div>
+        <div class="blockText">
+            <label class="block_text">Bell Mode</label>
+        </div>
+        <div class="blockCheakbox">
+            <div class="switchBlock">
+                <div class="onoffswitch">
+                    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="7" tabindex="0" %STATE_BELL_MODE%>
+                    <label class="onoffswitch-label" for="7"></label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="block">
+        <div class="blockIco">
+            <i class="fas fa-volume-up" style="color:#059e8a;"></i>
+        </div>
+        <div class="blockText">
+            <label class="block_text">Siren Signal</label>
+        </div>
+        <div class="blockCheakbox">
+            <div class="switchBlock">
+                <div class="onoffswitch">
+                    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="4" tabindex="0" %STATE_POWER_SPEAKER%>
+                    <label class="onoffswitch-label" for="4"></label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="block">
+        <div class="blockIco">
+            <i class="fas fa-project-diagram" style="color:#059e8a;"></i>
+        </div>
+        <div class="blockText">
+            <label class="block_text">Sensor Power</label>
+        </div>
+        <div class="blockCheakbox">
+            <div class="switchBlock">
+                <div class="onoffswitch">
+                    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="3" tabindex="0" %STATE_SENSOR_POWER%>
+                    <label class="onoffswitch-label" for="3"></label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/script.js"></script>
+</body>
+</html>
