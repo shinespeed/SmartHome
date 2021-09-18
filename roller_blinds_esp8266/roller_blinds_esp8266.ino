@@ -21,10 +21,10 @@ int stepCorrection = 240;
 int eepromAdress = 4000;
 
 int Step         = 16; //GPIO0---D0 Step of stepper motor driver
-int Dir          = 4; //GPIO2---D2 Direction of stepper motor driver
+int Dir          = 4;  //GPIO2---D2 Direction of stepper motor driver
 int PowerMotor   = 14;
 
-int nowStepMotor = 0;
+int nowStepMotor    = 0;
 int nowStep         = 0;
 int futureStep      = 0;
 int startDriveStep  = 0;
@@ -125,8 +125,6 @@ void setup()
     });
     ArduinoOTA.begin();
     initServer();
-    motorThread.onRun(changeStepMotor);
-    motorThread.setInterval(1);
 }
 
 void initServer()
@@ -279,5 +277,4 @@ void loop()
 	powerMotorSwitch();
 	correctionStepModeFunc();
 	changeStepMotor();
-	Serial.println(nowStep);
 }
