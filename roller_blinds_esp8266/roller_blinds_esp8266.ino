@@ -7,7 +7,6 @@
 #include <ESPAsyncTCP.h>
 #include <ESPAsyncWebServer.h>
 #include <EEPROM.h>
-#include <Thread.h> 
 
 AsyncWebServer server(80);
 
