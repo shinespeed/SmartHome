@@ -2,16 +2,16 @@
 
 #include "stdif.h"
 
-#define CHAT_ID_CONST "-1001403273821"
-#define BOTtoken      "966406106:AAHMjUkpMS8ctGyfxIYKU5z3O3Jybwo00iM"
+#define CHAT_ID_CONST "xxxxxxxxxxxxxx"
+#define BOTtoken      "xxxxxxxxxxxxxx"
 ///////////////////////////////////////////////////////////
 
-constexpr char* PASSWORD_TELEGRAM = "7127102telegram?";
+constexpr char* PASSWORD_TELEGRAM = "xxxxxxxxxxxxx";
 
 ///////////////////////////////////////////////////////////
 
-constexpr char* SSID_WIFI     = "TITAN";
-constexpr char* PASSWORD_WIFI = "boot7127102";
+constexpr char* SSID_WIFI     = "xxxxxxxxxxx";
+constexpr char* PASSWORD_WIFI = "xxxxxxxxxxx";
 
 ///////////////////////////////////////////////////////////
 

@@ -4,12 +4,12 @@
 #define _CONST_H
 
 constexpr char* VERSION       = "Small Room v2";
-constexpr char* SSID_WIFI     = "TITAN";
-constexpr char* PASSWORD_WIFI = "boot7127102";
+constexpr char* SSID_WIFI     = "xxxxxxxxxx";
+constexpr char* PASSWORD_WIFI = "xxxxxxxxxx";
 
 //setting for telegram bot
-constexpr char* CHAT_ID_TELEGRAM = "-1001403273821";
-constexpr char* BOT_TOKEN        = "1124654910:AAG3whPcDrG8cCtaA9ESQApYUrRKhVJqJ_8";
+constexpr char* CHAT_ID_TELEGRAM = "xxxxxxxxxxxxxxxx";
+constexpr char* BOT_TOKEN        = "xxxxxxxxxxxxxxxx";
 
 //input output interface esp32 
 constexpr int BAL_LAMP_PIN     = 14;
