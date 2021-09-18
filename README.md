@@ -9,7 +9,6 @@ This project has three related parts based on esp32 and esp8266 microcontrollers
 1. Add a graph of sensors to the web interface.
 2. Add authentication to the web interface.
 3. Add WIFI setting mode.
-4. Add correction mode for roller blinds
 
 # Web interface screenshot
 
