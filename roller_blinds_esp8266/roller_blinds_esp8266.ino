@@ -11,8 +11,6 @@
 
 AsyncWebServer server(80);
 
-Thread motorThread = Thread();
-
 String sliderValue = "0";
 
 int startStep = 0;
@@ -34,8 +32,8 @@ int startDriveStep  = 0;
 int correctionStepMode  = 0;
 
 const int CORRECTION_STEP_VALUE = 100;
-const char* ssid     = "TITAN";
-const char* password = "boot7127102";
+const char* ssid     = "xxxxxxxxxxx";
+const char* password = "xxxxxxxxxxx";
 const char* PARAM_INPUT = "value";
 
 void EEPROM_int_write(int addr, int num) 
